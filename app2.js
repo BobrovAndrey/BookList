@@ -23,7 +23,6 @@ UI.prototype.addBookToList = function(book){
 
   list.appendChild(row);
 }
-
 // Show Alert
 UI.prototype.showAlert = function(message, className) {
   // Create div

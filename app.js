@@ -86,7 +86,6 @@ UI.prototype.addBookToList = function(book){
     //Clear fields
     ui.clearFields();
 }
-
 })
 
 // Event Listener for Delete

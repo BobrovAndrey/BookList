@@ -5,7 +5,6 @@ class Book{
   this.isbn = isbn;
 }
 }
-
 class UI{
 addBookToList(book){
     const list = document.getElementById('book-list');
@@ -85,7 +84,16 @@ class Store{
     localStorage.setItem('books', JSON.stringify(book));
   }
 
-  static removeBook(){
+  static removeBook(isbn) {
+    const books = Store.getBoooks();
+    books.forEach(function(book, index){
+      if(book.isbn === isbn){
+        books.splice(index, 1);
+      }
+    });
+    
+    localStorage.setItem('books', JSON.stringify(book));
+
 
   }
 }
@@ -131,10 +139,15 @@ document.getElementById('book-form').addEventListener('submit', function(e){
 // Event Listener for Delete
 document.getElementById('book-list').addEventListener('click', function(e){
   e.preventDefault();
+
   //UI
   const ui = new UI();
+
   //Delete Book
   ui.deleteBook(e.target);
+
+  //Remove from LS
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
   //Show Alert
   ui.showAlert('Book Removed!', 'success');
